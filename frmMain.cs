@@ -335,7 +335,6 @@ namespace SPC_SUPPORT_WIP
                         tw.Close();
                         tw.Dispose();
                     }
-                    //
                     this.BeginInvoke(new Action(() => { lblPASS.Text = pass.ToString(); lblNG.Text = ng.ToString(); lblTOTAL.Text = total.ToString(); dataGridView1.DataSource = listchecktwo; }));
 
                 }
