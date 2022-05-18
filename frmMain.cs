@@ -164,13 +164,8 @@ namespace SPC_SUPPORT_WIP
                             return;
                         }
                     }
-                    msg = FileHelper.MoveFileOK(sourceFile);
-                    if (msg != "")
-                    {
-                        FAIL(@"NG", $"Error: {msg}!");
-                        return;
-                    }
-                    //
+                   
+                   
                     //Tag 2
                     List<Results> listchecktwo = new List<Results>();
                     var serials = data.serial;
@@ -335,6 +330,7 @@ namespace SPC_SUPPORT_WIP
                         tw.Close();
                         tw.Dispose();
                     }
+                    FileHelper.MoveFileOK(sourceFile);
                     this.BeginInvoke(new Action(() => { lblPASS.Text = pass.ToString(); lblNG.Text = ng.ToString(); lblTOTAL.Text = total.ToString(); dataGridView1.DataSource = listchecktwo; }));
 
                 }
@@ -586,9 +582,9 @@ namespace SPC_SUPPORT_WIP
         }
         void FAIL(string status, string message)
         {
-            //this.BeginInvoke(new Action(() =>
-            //{
-            section011.Visible = false;
+            this.BeginInvoke(new Action(() =>
+            {
+                section011.Visible = false;
             section021.Visible = false;
             section031.Visible = true;
             lblStatus.BackColor = Color.DarkRed;
@@ -597,7 +593,7 @@ namespace SPC_SUPPORT_WIP
             lblMessage.ForeColor = Color.White;
             lblStatus.Text = status;
             lblMessage.Text = message;
-            //}));
+            }));
         }
     }
 }
